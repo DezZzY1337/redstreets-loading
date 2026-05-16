@@ -17,17 +17,16 @@
 
 		body {
 			background:
-				linear-gradient(120deg, rgba(168, 0, 0, .32), transparent 34%),
-				linear-gradient(300deg, rgba(20, 95, 170, .25), transparent 38%),
-				repeating-linear-gradient(0deg, rgba(255,255,255,.025) 0, rgba(255,255,255,.025) 1px, transparent 1px, transparent 4px),
-				radial-gradient(circle at 72% 24%, rgba(236, 64, 26, .22), transparent 26%),
+				linear-gradient(120deg, rgba(168, 0, 0, .34), transparent 36%),
+				linear-gradient(300deg, rgba(20, 95, 170, .24), transparent 40%),
+				radial-gradient(circle at 72% 24%, rgba(236, 64, 26, .18), transparent 28%),
 				linear-gradient(180deg, #111419 0%, #07080a 100%);
 		}
 
 		.page {
 			position: relative;
 			min-height: 100vh;
-			padding: 28px;
+			padding: 42px 52px;
 			overflow: hidden;
 		}
 
@@ -37,145 +36,128 @@
 			inset: 0;
 			pointer-events: none;
 			background:
-				linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
-				linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
-			background-size: 52px 52px;
+				linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+				linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+			background-size: 56px 56px;
 			mask-image: linear-gradient(to bottom, rgba(0,0,0,.8), transparent);
 		}
 
 		.wrap {
 			position: relative;
-			max-width: 1220px;
-			margin: 0 auto;
+			min-height: calc(100vh - 84px);
+			display: flex;
+			flex-direction: column;
 		}
 
-		.hero {
-			position: relative;
-			padding: 28px;
-			border: 1px solid rgba(255,255,255,.12);
-			border-left: 5px solid #d92525;
-			background:
-				linear-gradient(95deg, rgba(7,8,10,.96) 0%, rgba(17,19,23,.88) 52%, rgba(7,8,10,.72) 100%),
-				repeating-linear-gradient(135deg, rgba(255,255,255,.05) 0 1px, transparent 1px 13px);
-			box-shadow: 0 22px 60px rgba(0,0,0,.42);
+		.brand {
+			max-width: 720px;
 		}
 
 		.kicker {
-			display: inline-block;
-			margin-bottom: 12px;
-			padding: 5px 9px;
-			border: 1px solid rgba(255,255,255,.16);
-			background: rgba(217,37,37,.14);
 			color: #ffb4a8;
 			font-size: 11px;
-			font-weight: 800;
-			letter-spacing: 2px;
+			font-weight: 900;
+			letter-spacing: 2.2px;
 			text-transform: uppercase;
 		}
 
 		h1 {
-			margin: 0;
+			margin: 10px 0 0;
 			color: #fff;
-			font-size: 56px;
-			line-height: .92;
+			font-size: 68px;
+			line-height: .9;
 			font-weight: 900;
 			text-transform: uppercase;
 			text-shadow: 4px 0 0 rgba(217,37,37,.35), -3px 0 0 rgba(30,145,255,.22);
 		}
 
 		.subtitle {
-			max-width: 660px;
-			margin: 14px 0 0;
+			max-width: 670px;
+			margin: 18px 0 0;
 			color: #cbd2dc;
 			font-size: 18px;
 			font-weight: 700;
 		}
 
-		.card,
-		.progress {
-			border: 1px solid rgba(255,255,255,.11);
-			background: rgba(11,13,16,.82);
-		}
-
-		.grid {
+		.content {
 			display: grid;
-			grid-template-columns: 1.1fr 1fr 1fr;
-			gap: 16px;
-			margin-top: 16px;
+			grid-template-columns: 1.08fr .92fr .9fr;
+			gap: 48px;
+			align-items: start;
+			margin-top: 58px;
 		}
 
-		.card {
-			min-height: 244px;
-			box-shadow: 0 12px 28px rgba(0,0,0,.25);
-		}
-
-		.card-head {
-			padding: 14px 16px;
-			border-bottom: 1px solid rgba(255,255,255,.1);
-			background: rgba(255,255,255,.04);
-		}
-
-		.card h2 {
-			margin: 0;
+		.section-title {
+			margin: 0 0 18px;
 			color: #fff;
-			font-size: 21px;
+			font-size: 18px;
+			font-weight: 900;
+			letter-spacing: 1px;
 			text-transform: uppercase;
 		}
 
-		.card-body {
-			padding: 16px;
-			color: #dce3ec;
+		.team-list,
+		.staff-list {
+			display: grid;
+			gap: 18px;
 		}
 
 		.team {
 			display: grid;
-			grid-template-columns: 5px 1fr;
-			gap: 12px;
-			margin-bottom: 14px;
+			grid-template-columns: 4px 1fr;
+			gap: 14px;
 		}
 
 		.team i {
 			display: block;
-			min-height: 44px;
+			min-height: 42px;
 		}
 
 		.green { background: #23af46; }
 		.red { background: #dc3232; }
 		.blue { background: #4691dc; }
 
-		.team b {
+		.team b,
+		.staff b {
 			display: block;
-			margin-bottom: 3px;
+			margin-bottom: 4px;
 			color: #fff;
+			font-size: 15px;
 		}
 
 		.team span,
-		.muted {
+		.staff span {
 			color: #aeb8c5;
 			font-size: 14px;
 		}
 
-		ol {
+		.rules {
 			margin: 0;
-			padding-left: 22px;
+			padding: 0;
+			list-style: none;
+			counter-reset: rule;
 		}
 
-		li {
-			margin: 9px 0;
+		.rules li {
+			position: relative;
+			margin: 0 0 16px;
+			padding-left: 34px;
+			color: #dce3ec;
 		}
 
-		.arsenal {
-			display: none;
-		}
-
-		.staff-list {
-			display: grid;
-			gap: 16px;
+		.rules li:before {
+			counter-increment: rule;
+			content: counter(rule);
+			position: absolute;
+			left: 0;
+			top: 0;
+			color: #d92525;
+			font-weight: 900;
 		}
 
 		.staff {
 			display: grid;
-			grid-template-columns: 42px 1fr;
+			grid-template-columns: 40px 1fr;
 			align-items: center;
 			gap: 12px;
 		}
@@ -184,86 +166,104 @@
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			width: 42px;
-			height: 42px;
-			border: 1px solid rgba(255,255,255,.12);
+			width: 40px;
+			height: 40px;
 			border-radius: 50%;
 			background:
-				radial-gradient(circle at 30% 30%, rgba(255,255,255,.2), transparent 42%),
-				linear-gradient(135deg, rgba(217,37,37,.65), rgba(20,95,170,.62));
+				radial-gradient(circle at 30% 30%, rgba(255,255,255,.18), transparent 42%),
+				linear-gradient(135deg, rgba(217,37,37,.7), rgba(20,95,170,.62));
 			color: #fff;
-			font-size: 16px;
 			font-weight: 900;
 		}
 
-		.staff b {
-			display: block;
-			color: #fff;
-			font-size: 15px;
+		.loading {
+			margin-top: auto;
+			padding-top: 40px;
 		}
 
-		.staff span {
-			color: #aeb8c5;
-			font-size: 14px;
-		}
-
-		.progress {
-			margin-top: 16px;
-			padding: 16px;
-		}
-
-		.progress-head {
+		.loading-head {
 			display: flex;
 			justify-content: space-between;
-			align-items: center;
-			margin-bottom: 10px;
+			gap: 18px;
+			align-items: baseline;
+		}
+
+		#status {
+			color: #fff;
+			font-size: 19px;
 			font-weight: 900;
 		}
 
-		.progress-head span {
-			color: #cbd2dc;
+		#detail {
+			color: #aeb8c5;
+			font-size: 14px;
+			text-align: right;
 		}
 
-		.bar {
-			height: 16px;
-			background: rgba(255,255,255,.08);
-			overflow: hidden;
+		.track {
+			position: relative;
+			height: 3px;
+			margin-top: 15px;
+			background: rgba(255,255,255,.12);
 		}
 
 		.fill {
+			position: relative;
 			width: 0%;
 			height: 100%;
-			background:
-				linear-gradient(90deg, #d92525, #f06a2a);
-			box-shadow: 0 0 20px rgba(217,37,37,.4);
-			transition: width .35s ease;
+			background: linear-gradient(90deg, #d92525, #f06a2a);
+			box-shadow: 0 0 18px rgba(217,37,37,.45);
+			transition: width .45s ease;
 		}
 
-		.status-line {
-			margin-top: 10px;
-			color: #aeb8c5;
-			font-size: 14px;
+		.fill:after {
+			content: "";
+			position: absolute;
+			right: -18px;
+			top: -1px;
+			width: 18px;
+			height: 5px;
+			background: rgba(240,106,42,.45);
+			filter: blur(5px);
+		}
+
+		.phases {
+			display: flex;
+			gap: 24px;
+			margin-top: 14px;
+			color: #6f7885;
+			font-size: 12px;
+			font-weight: 900;
+			letter-spacing: 1px;
+			text-transform: uppercase;
+		}
+
+		.phases span.active {
+			color: #ffb4a8;
 		}
 
 		@media (max-width: 980px) {
-			.hero { flex-direction: column; }
-			.grid { grid-template-columns: 1fr; }
+			.page { padding: 28px; }
+			.content { grid-template-columns: 1fr; gap: 30px; margin-top: 36px; }
+			h1 { font-size: 48px; }
+			.loading-head { display: block; }
+			#detail { margin-top: 6px; text-align: left; }
 		}
 	</style>
 </head>
 <body>
 	<div class="page">
 		<div class="wrap">
-			<section class="hero">
-				<span class="kicker">RED STREETS BRIEFING</span>
+			<section class="brand">
+				<div class="kicker">RED STREETS BRIEFING</div>
 				<h1>RED STREETS</h1>
 				<p class="subtitle">Gang Wars в Garry's Mod. Три стороны, городские карты и одна простая задача: удержать улицы за своей командой.</p>
 			</section>
 
-			<div class="grid">
-				<section class="card">
-					<div class="card-head"><h2>Команды</h2></div>
-					<div class="card-body">
+			<section class="content">
+				<div>
+					<h2 class="section-title">Команды</h2>
+					<div class="team-list">
 						<div class="team">
 							<i class="green"></i>
 							<div><b>Grove Street</b><span>Быстрые заходы и давление через фланги.</span></div>
@@ -277,95 +277,123 @@
 							<div><b>Police / SWAT / Полиция</b><span>Тактика, броня и контроль улиц.</span></div>
 						</div>
 					</div>
-				</section>
-
-				<section class="card">
-					<div class="card-head"><h2>Правила</h2></div>
-					<div class="card-body">
-						<ol>
-							<li>Не спавнкемпить и не ломать игру другим.</li>
-							<li>Не оскорблять игроков и администрацию.</li>
-							<li>Играть за команду, а не против неё.</li>
-							<li>Увидел баг — сообщи, не абузь.</li>
-							<li>Жалобы отправляй через <b>@</b> в чат админам.</li>
-						</ol>
-					</div>
-				</section>
-
-				<section class="card">
-					<div class="card-head"><h2>Команда проекта</h2></div>
-					<div class="card-body">
-						<div class="staff-list">
-							<div class="staff">
-								<div class="avatar">D</div>
-								<div><b>dezzzy1337</b><span>Создатель</span></div>
-							</div>
-							<div class="staff">
-								<div class="avatar">Р</div>
-								<div><b>Работорговец</b><span>Создатель</span></div>
-							</div>
-							<div class="staff">
-								<div class="avatar">E</div>
-								<div><b>Elki Palki</b><span>Тестер / помощник</span></div>
-							</div>
-							<div class="staff">
-								<div class="avatar">K</div>
-								<div><b>Ki$$marik</b><span>Тестер / помощник</span></div>
-							</div>
-						</div>
-					</div>
-				</section>
-			</div>
-
-			<section class="progress">
-				<div class="progress-head">
-					<span id="status">Подключение к серверу...</span>
-					<b id="percent">0%</b>
 				</div>
-				<div class="bar"><div class="fill" id="fill"></div></div>
-				<div class="status-line" id="detail">Подготавливаем загрузку.</div>
+
+				<div>
+					<h2 class="section-title">Правила</h2>
+					<ol class="rules">
+						<li>Не спавнкемпить и не ломать игру другим.</li>
+						<li>Не оскорблять игроков и администрацию.</li>
+						<li>Играть за команду, а не против неё.</li>
+						<li>Увидел баг — сообщи, не абузь.</li>
+						<li>Жалобы отправляй через <b>@</b> в чат админам.</li>
+					</ol>
+				</div>
+
+				<div>
+					<h2 class="section-title">Команда проекта</h2>
+					<div class="staff-list">
+						<div class="staff"><div class="avatar">D</div><div><b>dezzzy1337</b><span>Создатель</span></div></div>
+						<div class="staff"><div class="avatar">Р</div><div><b>Работорговец</b><span>Создатель</span></div></div>
+						<div class="staff"><div class="avatar">E</div><div><b>Elki Palki</b><span>Тестер / помощник</span></div></div>
+						<div class="staff"><div class="avatar">K</div><div><b>Ki$$marik</b><span>Тестер / помощник</span></div></div>
+					</div>
+				</div>
+			</section>
+
+			<section class="loading">
+				<div class="loading-head">
+					<div id="status">Подключение к серверу...</div>
+					<div id="detail">Подготавливаем загрузку.</div>
+				</div>
+				<div class="track"><div class="fill" id="fill"></div></div>
+				<div class="phases">
+					<span id="phase-files" class="active">Файлы</span>
+					<span id="phase-lua">Lua</span>
+					<span id="phase-world">Мир</span>
+					<span id="phase-ready">Вход</span>
+				</div>
 			</section>
 		</div>
 	</div>
 
 	<script>
 		var fill = document.getElementById("fill");
-		var percent = document.getElementById("percent");
 		var status = document.getElementById("status");
 		var detail = document.getElementById("detail");
 		var totalFiles = 0;
 		var filesNeeded = 0;
+		var currentProgress = 3;
+		var targetProgress = 3;
 
-		function setProgress(value) {
-			value = Math.max(0, Math.min(100, value || 0));
-			fill.style.width = value + "%";
-			percent.textContent = Math.round(value) + "%";
+		function setPhase(name) {
+			["files", "lua", "world", "ready"].forEach(function (phase) {
+				document.getElementById("phase-" + phase).className = phase === name ? "active" : "";
+			});
 		}
+
+		function pushProgress(value) {
+			targetProgress = Math.max(targetProgress, value);
+		}
+
+		function tick() {
+			currentProgress += (targetProgress - currentProgress) * 0.08;
+			fill.style.width = currentProgress + "%";
+			requestAnimationFrame(tick);
+		}
+		tick();
 
 		function GameDetails(servername, serverurl, mapname, maxplayers, steamid, gamemode) {
 			status.textContent = "Подключение к " + (servername || "Red Streets");
-			detail.textContent = "Карта: " + (mapname || "загрузка") + " · режим: " + (gamemode || "teamfight");
-		}
-
-		function SetStatusChanged(message) {
-			status.textContent = message || "Загрузка...";
+			detail.textContent = "Карта: " + (mapname || "загрузка");
 		}
 
 		function SetFilesTotal(total) {
 			totalFiles = total || 0;
 			filesNeeded = totalFiles;
+			setPhase("files");
+			pushProgress(8);
 		}
 
 		function SetFilesNeeded(needed) {
 			filesNeeded = needed || 0;
 			if (totalFiles > 0) {
-				setProgress(((totalFiles - filesNeeded) / totalFiles) * 100);
+				pushProgress(8 + ((totalFiles - filesNeeded) / totalFiles) * 58);
 			}
-			detail.textContent = "Осталось файлов: " + filesNeeded;
+			detail.textContent = filesNeeded > 0 ? "Осталось файлов: " + filesNeeded : "Файлы загружены";
 		}
 
 		function DownloadingFile(fileName) {
+			setPhase("files");
 			detail.textContent = "Загрузка: " + fileName;
+		}
+
+		function SetStatusChanged(message) {
+			message = message || "Загрузка...";
+			status.textContent = message;
+
+			var m = message.toLowerCase();
+			if (m.indexOf("lua") !== -1) {
+				setPhase("lua");
+				pushProgress(76);
+				detail.textContent = "Запуск Lua-скриптов";
+			} else if (m.indexOf("workshop") !== -1 || m.indexOf("addon") !== -1) {
+				setPhase("files");
+				pushProgress(18);
+			} else if (m.indexOf("sending client info") !== -1 || m.indexOf("client info") !== -1) {
+				setPhase("world");
+				pushProgress(88);
+				detail.textContent = "Синхронизация с сервером";
+			} else if (m.indexOf("starting") !== -1 || m.indexOf("map") !== -1) {
+				setPhase("world");
+				pushProgress(84);
+			} else if (m.indexOf("ready") !== -1 || m.indexOf("complete") !== -1) {
+				setPhase("ready");
+				pushProgress(97);
+				detail.textContent = "Почти готово";
+			} else if (filesNeeded <= 0 && totalFiles > 0) {
+				pushProgress(72);
+			}
 		}
 	</script>
 </body>
