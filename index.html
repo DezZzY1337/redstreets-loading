@@ -36,14 +36,39 @@
 			inset: 0;
 			pointer-events: none;
 			background:
-				linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
-				linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+				linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+				linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
 			background-size: 56px 56px;
-			mask-image: linear-gradient(to bottom, rgba(0,0,0,.8), transparent);
+			mask-image: linear-gradient(to bottom, rgba(0,0,0,.88), transparent);
+			animation: gridMove 18s linear infinite;
+		}
+
+		.page:after {
+			content: "";
+			position: fixed;
+			inset: -30%;
+			pointer-events: none;
+			background:
+				radial-gradient(circle at 20% 30%, rgba(217,37,37,.14), transparent 18%),
+				radial-gradient(circle at 76% 44%, rgba(30,145,255,.10), transparent 22%),
+				radial-gradient(circle at 50% 80%, rgba(240,106,42,.12), transparent 20%);
+			filter: blur(10px);
+			animation: glowDrift 12s ease-in-out infinite alternate;
+		}
+
+		@keyframes gridMove {
+			from { background-position: 0 0, 0 0; }
+			to { background-position: 56px 56px, 56px 56px; }
+		}
+
+		@keyframes glowDrift {
+			from { transform: translate3d(-2%, -1%, 0) scale(1); opacity: .75; }
+			to { transform: translate3d(2%, 1%, 0) scale(1.04); opacity: 1; }
 		}
 
 		.wrap {
 			position: relative;
+			z-index: 1;
 			min-height: calc(100vh - 76px);
 			display: flex;
 			flex-direction: column;
@@ -51,14 +76,6 @@
 
 		.brand {
 			max-width: 720px;
-		}
-
-		.kicker {
-			color: #ffb4a8;
-			font-size: 11px;
-			font-weight: 900;
-			letter-spacing: 2.2px;
-			text-transform: uppercase;
 		}
 
 		h1 {
@@ -80,11 +97,12 @@
 		}
 
 		.loading {
-			width: min(760px, 100%);
+			width: 760px;
+			max-width: 100%;
 			margin: 34px auto 0;
 			padding: 22px;
 			border: 1px solid rgba(255,255,255,.12);
-			background: linear-gradient(180deg, rgba(17,20,25,.82), rgba(7,8,10,.72));
+			background: linear-gradient(180deg, rgba(17,20,25,.84), rgba(7,8,10,.76));
 			box-shadow: 0 24px 80px rgba(0,0,0,.38), 0 0 42px rgba(217,37,37,.12);
 			backdrop-filter: blur(8px);
 		}
@@ -102,10 +120,22 @@
 			font-weight: 900;
 		}
 
+		.loading-meta {
+			display: flex;
+			align-items: baseline;
+			gap: 14px;
+			text-align: right;
+		}
+
+		#percent {
+			color: #ffb4a8;
+			font-size: 22px;
+			font-weight: 900;
+		}
+
 		#detail {
 			color: #aeb8c5;
 			font-size: 14px;
-			text-align: right;
 		}
 
 		.track {
@@ -137,34 +167,79 @@
 		}
 
 		.phases {
-			display: flex;
-			gap: 24px;
-			margin-top: 14px;
+			display: grid;
+			grid-template-columns: repeat(4, 1fr);
+			gap: 10px;
+			margin-top: 16px;
+		}
+
+		.phases span {
+			position: relative;
+			padding: 10px 10px 10px 28px;
+			border: 1px solid rgba(255,255,255,.08);
+			background: rgba(255,255,255,.04);
 			color: #6f7885;
+			font-size: 11px;
+			font-weight: 900;
+			letter-spacing: 1px;
+			text-transform: uppercase;
+		}
+
+		.phases span:before {
+			content: "";
+			position: absolute;
+			left: 10px;
+			top: 50%;
+			width: 8px;
+			height: 8px;
+			border-radius: 50%;
+			background: #4d5663;
+			transform: translateY(-50%);
+		}
+
+		.phases span.active {
+			border-color: rgba(240,106,42,.5);
+			background: rgba(240,106,42,.12);
+			color: #ffb4a8;
+		}
+
+		.phases span.active:before {
+			background: #f06a2a;
+			box-shadow: 0 0 14px rgba(240,106,42,.7);
+		}
+
+		.loading-grid {
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: 16px;
+			margin-top: 20px;
+		}
+
+		.console-title {
+			display: flex;
+			justify-content: space-between;
+			gap: 16px;
+			margin-bottom: 8px;
+			color: #dce3ec;
 			font-size: 12px;
 			font-weight: 900;
 			letter-spacing: 1px;
 			text-transform: uppercase;
 		}
 
-		.phases span.active {
-			color: #ffb4a8;
-		}
-
-		.loading-grid {
-			display: grid;
-			grid-template-columns: 1.25fr .75fr;
-			gap: 18px;
-			margin-top: 20px;
+		.console-title span:last-child {
+			color: #6f7885;
 		}
 
 		.console {
+			width: 100%;
+			min-width: 0;
 			min-height: 170px;
 			max-height: 170px;
 			padding: 14px;
 			overflow: hidden;
 			border: 1px solid rgba(255,255,255,.09);
-			background: rgba(0,0,0,.34);
+			background: rgba(0,0,0,.36);
 			font-family: Consolas, Monaco, monospace;
 			font-size: 12px;
 			line-height: 1.45;
@@ -178,147 +253,61 @@
 		}
 
 		.console-line:before {
-			content: "> ";
+			content: "[LOAD] ";
 			color: #f06a2a;
 			font-weight: 900;
 		}
 
-		.warning {
-			margin-top: 16px;
-			padding: 12px 14px;
-			border-left: 4px solid #f06a2a;
-			background: rgba(240,106,42,.1);
-			color: #ffe0d6;
-			font-size: 13px;
-			font-weight: 800;
-		}
-
-		.mini-game {
-			position: relative;
-			min-height: 170px;
-			padding: 14px;
-			border: 1px solid rgba(255,255,255,.09);
-			background:
-				radial-gradient(circle at 60% 40%, rgba(217,37,37,.16), transparent 34%),
-				rgba(255,255,255,.04);
-			overflow: hidden;
-		}
-
-		.game-title {
-			margin: 0 0 6px;
-			color: #fff;
-			font-size: 13px;
-			font-weight: 900;
-			text-transform: uppercase;
-		}
-
-		.game-help {
-			margin: 0;
-			color: #aeb8c5;
-			font-size: 12px;
-		}
-
-		.score {
-			position: absolute;
-			left: 14px;
-			bottom: 12px;
-			color: #ffb4a8;
-			font-size: 12px;
-			font-weight: 900;
-		}
-
-		.target {
-			position: absolute;
-			left: 62%;
-			top: 52%;
-			width: 34px;
-			height: 34px;
-			border: 0;
-			border-radius: 50%;
-			background: radial-gradient(circle, #fff 0 14%, #f06a2a 16% 38%, #d92525 40% 70%, rgba(217,37,37,.3) 72%);
-			box-shadow: 0 0 18px rgba(217,37,37,.6);
-			cursor: pointer;
-		}
-
-		.content {
+		.info-row {
 			display: grid;
 			grid-template-columns: 1fr 1fr;
-			gap: 48px;
-			align-items: start;
-			margin-top: 44px;
+			gap: 12px;
 		}
 
-		.section-title {
-			margin: 0 0 18px;
+		.discord,
+		.long-load {
+			padding: 12px 14px;
+			border: 1px solid rgba(255,255,255,.09);
+			background: rgba(255,255,255,.045);
+			color: #dce3ec;
+			font-size: 13px;
+			line-height: 1.45;
+		}
+
+		.discord b,
+		.long-load b {
+			display: block;
+			margin-bottom: 4px;
 			color: #fff;
-			font-size: 18px;
-			font-weight: 900;
+			font-size: 12px;
 			letter-spacing: 1px;
 			text-transform: uppercase;
 		}
 
-		.team-list {
-			display: grid;
-			gap: 18px;
+		.discord code {
+			color: #ffb4a8;
+			font-family: Consolas, Monaco, monospace;
+			font-size: 13px;
 		}
 
-		.team {
-			display: grid;
-			grid-template-columns: 4px 1fr;
-			gap: 14px;
-		}
-
-		.team i {
-			display: block;
-			min-height: 42px;
-		}
-
-		.green { background: #23af46; }
-		.red { background: #dc3232; }
-		.blue { background: #4691dc; }
-
-		.team b {
-			display: block;
-			margin-bottom: 4px;
-			color: #fff;
-			font-size: 15px;
-		}
-
-		.team span {
-			color: #aeb8c5;
-			font-size: 14px;
-		}
-
-		.rules {
-			margin: 0;
-			padding: 0;
-			list-style: none;
-			counter-reset: rule;
-		}
-
-		.rules li {
-			position: relative;
-			margin: 0 0 16px;
-			padding-left: 34px;
-			color: #dce3ec;
-		}
-
-		.rules li:before {
-			counter-increment: rule;
-			content: counter(rule);
-			position: absolute;
-			left: 0;
-			top: 0;
-			color: #d92525;
-			font-weight: 900;
+		.warning {
+			padding: 13px 14px;
+			border: 1px solid rgba(240,106,42,.42);
+			border-left: 5px solid #f06a2a;
+			background: linear-gradient(90deg, rgba(240,106,42,.16), rgba(217,37,37,.08));
+			color: #ffe0d6;
+			font-size: 13px;
+			font-weight: 800;
+			box-shadow: 0 0 24px rgba(240,106,42,.08);
 		}
 
 		@media (max-width: 980px) {
 			.page { padding: 28px; }
-			.content, .loading-grid { grid-template-columns: 1fr; gap: 22px; }
 			h1 { font-size: 48px; }
 			.loading-head { display: block; }
-			#detail { margin-top: 6px; text-align: left; }
+			.loading-meta { margin-top: 6px; justify-content: space-between; text-align: left; }
+			.phases { grid-template-columns: 1fr 1fr; }
+			.info-row { grid-template-columns: 1fr; }
 		}
 	</style>
 </head>
@@ -326,67 +315,49 @@
 	<div class="page">
 		<div class="wrap">
 			<section class="brand">
-				<div class="kicker">RED STREETS BRIEFING</div>
 				<h1>RED STREETS</h1>
-				<p class="subtitle">Gang Wars в Garry's Mod. Три стороны, городские карты и одна простая задача: удержать улицы за своей командой.</p>
+				<p class="subtitle">Gang Wars в Garry's Mod. Городские карты и одна простая задача: удержать улицы за своей командой.</p>
 			</section>
 
 			<section class="loading">
 				<div class="loading-head">
 					<div id="status">Подключение к серверу...</div>
-					<div id="detail">Подготавливаем загрузку.</div>
+					<div class="loading-meta">
+						<div id="percent">3%</div>
+						<div id="detail">Подготавливаем загрузку.</div>
+					</div>
 				</div>
+
 				<div class="track"><div class="fill" id="fill"></div></div>
-				<div class="phases">
-					<span id="phase-files" class="active">Файлы</span>
+
+				<div class="phases" aria-label="Этапы загрузки">
+					<span id="phase-files" class="active">Контент</span>
 					<span id="phase-lua">Lua</span>
-					<span id="phase-world">Мир</span>
+					<span id="phase-world">Карта</span>
 					<span id="phase-ready">Вход</span>
 				</div>
 
 				<div class="loading-grid">
 					<div>
+						<div class="console-title">
+							<span>Консоль загрузки</span>
+							<span>статус сервера</span>
+						</div>
 						<div class="console" id="consoleLog" aria-label="Список загрузки"></div>
-						<div class="warning">Если появилась ошибка <b>map is missing</b>, перезапустите игру и попробуйте снова зайти на сервер.</div>
 					</div>
 
-					<div class="mini-game" id="miniGame">
-						<p class="game-title">Мини-игра: поймай метку</p>
-						<p class="game-help">Кликай по красной метке или нажимай Space / Enter, пока сервер загружается.</p>
-						<button class="target" id="target" type="button" aria-label="Поймать метку"></button>
-						<div class="score">Очки: <span id="score">0</span></div>
-					</div>
-				</div>
-			</section>
+					<div class="warning">Если появилась ошибка <b>map is missing</b>, перезапустите игру и попробуйте снова зайти на сервер.</div>
 
-			<section class="content">
-				<div>
-					<h2 class="section-title">Команды</h2>
-					<div class="team-list">
-						<div class="team">
-							<i class="green"></i>
-							<div><b>Grove Street</b><span>Быстрые заходы и давление через фланги.</span></div>
+					<div class="info-row">
+						<div class="discord">
+							<b>Discord сервера</b>
+							Новости, жалобы и баги: <code>discord.gg/mchRcKTcgv</code>
 						</div>
-						<div class="team">
-							<i class="red"></i>
-							<div><b>Bloods</b><span>Агрессия, плотный огонь и удержание района.</span></div>
-						</div>
-						<div class="team">
-							<i class="blue"></i>
-							<div><b>Police / SWAT / Полиция</b><span>Тактика, броня и контроль улиц.</span></div>
+						<div class="long-load">
+							<b>Если долго грузит</b>
+							Проверьте Workshop-контент, перезапустите Garry's Mod или очистите cache/download.
 						</div>
 					</div>
-				</div>
-
-				<div>
-					<h2 class="section-title">Правила</h2>
-					<ol class="rules">
-						<li>Не спавнкемпить и не ломать игру другим.</li>
-						<li>Не оскорблять игроков и администрацию.</li>
-						<li>Играть за команду, а не против неё.</li>
-						<li>Увидел баг — сообщи, не абузь.</li>
-						<li>Жалобы отправляй через <b>@</b> в чат админам.</li>
-					</ol>
 				</div>
 			</section>
 		</div>
@@ -396,14 +367,12 @@
 		var fill = document.getElementById("fill");
 		var status = document.getElementById("status");
 		var detail = document.getElementById("detail");
+		var percent = document.getElementById("percent");
 		var consoleLog = document.getElementById("consoleLog");
-		var target = document.getElementById("target");
-		var scoreView = document.getElementById("score");
 		var totalFiles = 0;
 		var filesNeeded = 0;
 		var currentProgress = 3;
 		var targetProgress = 3;
-		var score = 0;
 
 		function setPhase(name) {
 			["files", "lua", "world", "ready"].forEach(function (phase) {
@@ -412,7 +381,7 @@
 		}
 
 		function pushProgress(value) {
-			targetProgress = Math.max(targetProgress, value);
+			targetProgress = Math.max(targetProgress, Math.min(100, value));
 		}
 
 		function addLog(text) {
@@ -427,36 +396,15 @@
 			consoleLog.scrollTop = consoleLog.scrollHeight;
 		}
 
-		function moveTarget() {
-			var box = document.getElementById("miniGame");
-			var maxX = Math.max(40, box.clientWidth - 54);
-			var maxY = Math.max(70, box.clientHeight - 54);
-			target.style.left = Math.floor(28 + Math.random() * (maxX - 28)) + "px";
-			target.style.top = Math.floor(62 + Math.random() * (maxY - 62)) + "px";
-		}
-
-		function hitTarget() {
-			score += 1;
-			scoreView.textContent = score;
-			moveTarget();
-		}
-
-		target.addEventListener("click", hitTarget);
-		document.addEventListener("keydown", function (event) {
-			if (event.code === "Space" || event.code === "Enter") {
-				event.preventDefault();
-				hitTarget();
-			}
-		});
-
 		function tick() {
 			currentProgress += (targetProgress - currentProgress) * 0.08;
 			fill.style.width = currentProgress + "%";
+			percent.textContent = Math.round(currentProgress) + "%";
 			requestAnimationFrame(tick);
 		}
 		tick();
-		moveTarget();
 		addLog("Ожидание ответа сервера...");
+		addLog("Проверка Workshop-контента.");
 		addLog("Подготовка загрузочного экрана.");
 
 		function GameDetails(servername, serverurl, mapname, maxplayers, steamid, gamemode) {
@@ -464,9 +412,9 @@
 			var map = mapname || "загрузка";
 			status.textContent = "Подключение к " + server;
 			detail.textContent = "Карта: " + map;
-			addLog("Сервер: " + server);
-			addLog("Карта: " + map);
-			if (gamemode) addLog("Режим: " + gamemode);
+			addLog("[OK] Сервер: " + server);
+			addLog("[MAP] Карта: " + map);
+			if (gamemode) addLog("[OK] Режим: " + gamemode);
 		}
 
 		function SetFilesTotal(total) {
@@ -483,7 +431,7 @@
 				pushProgress(8 + ((totalFiles - filesNeeded) / totalFiles) * 58);
 			}
 			detail.textContent = filesNeeded > 0 ? "Осталось файлов: " + filesNeeded : "Файлы загружены";
-			addLog(filesNeeded > 0 ? "Осталось файлов: " + filesNeeded : "Все файлы загружены.");
+			addLog(filesNeeded > 0 ? "Осталось файлов: " + filesNeeded : "[OK] Все файлы загружены.");
 		}
 
 		function DownloadingFile(fileName) {
@@ -502,6 +450,7 @@
 				setPhase("lua");
 				pushProgress(76);
 				detail.textContent = "Запуск Lua-скриптов";
+				addLog("[LUA] Запуск клиентских скриптов.");
 			} else if (m.indexOf("workshop") !== -1 || m.indexOf("addon") !== -1) {
 				setPhase("files");
 				pushProgress(18);
@@ -509,13 +458,16 @@
 				setPhase("world");
 				pushProgress(88);
 				detail.textContent = "Синхронизация с сервером";
+				addLog("[OK] Отправка данных клиента.");
 			} else if (m.indexOf("starting") !== -1 || m.indexOf("map") !== -1) {
 				setPhase("world");
 				pushProgress(84);
+				addLog("[MAP] Подготовка карты.");
 			} else if (m.indexOf("ready") !== -1 || m.indexOf("complete") !== -1) {
 				setPhase("ready");
 				pushProgress(97);
 				detail.textContent = "Почти готово";
+				addLog("[OK] Вход в игру.");
 			} else if (filesNeeded <= 0 && totalFiles > 0) {
 				pushProgress(72);
 			}
