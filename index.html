@@ -26,7 +26,7 @@
 		.page {
 			position: relative;
 			min-height: 100vh;
-			padding: 42px 52px;
+			padding: 34px 52px 42px;
 			overflow: hidden;
 		}
 
@@ -44,7 +44,7 @@
 
 		.wrap {
 			position: relative;
-			min-height: calc(100vh - 84px);
+			min-height: calc(100vh - 76px);
 			display: flex;
 			flex-direction: column;
 		}
@@ -64,7 +64,7 @@
 		h1 {
 			margin: 10px 0 0;
 			color: #fff;
-			font-size: 68px;
+			font-size: 64px;
 			line-height: .9;
 			font-weight: 900;
 			text-transform: uppercase;
@@ -79,12 +79,173 @@
 			font-weight: 700;
 		}
 
+		.loading {
+			width: min(760px, 100%);
+			margin: 34px auto 0;
+			padding: 22px;
+			border: 1px solid rgba(255,255,255,.12);
+			background: linear-gradient(180deg, rgba(17,20,25,.82), rgba(7,8,10,.72));
+			box-shadow: 0 24px 80px rgba(0,0,0,.38), 0 0 42px rgba(217,37,37,.12);
+			backdrop-filter: blur(8px);
+		}
+
+		.loading-head {
+			display: flex;
+			justify-content: space-between;
+			gap: 18px;
+			align-items: baseline;
+		}
+
+		#status {
+			color: #fff;
+			font-size: 20px;
+			font-weight: 900;
+		}
+
+		#detail {
+			color: #aeb8c5;
+			font-size: 14px;
+			text-align: right;
+		}
+
+		.track {
+			position: relative;
+			height: 5px;
+			margin-top: 16px;
+			background: rgba(255,255,255,.12);
+			overflow: hidden;
+		}
+
+		.fill {
+			position: relative;
+			width: 0%;
+			height: 100%;
+			background: linear-gradient(90deg, #d92525, #f06a2a);
+			box-shadow: 0 0 18px rgba(217,37,37,.45);
+			transition: width .45s ease;
+		}
+
+		.fill:after {
+			content: "";
+			position: absolute;
+			right: -18px;
+			top: -1px;
+			width: 18px;
+			height: 7px;
+			background: rgba(240,106,42,.45);
+			filter: blur(5px);
+		}
+
+		.phases {
+			display: flex;
+			gap: 24px;
+			margin-top: 14px;
+			color: #6f7885;
+			font-size: 12px;
+			font-weight: 900;
+			letter-spacing: 1px;
+			text-transform: uppercase;
+		}
+
+		.phases span.active {
+			color: #ffb4a8;
+		}
+
+		.loading-grid {
+			display: grid;
+			grid-template-columns: 1.25fr .75fr;
+			gap: 18px;
+			margin-top: 20px;
+		}
+
+		.console {
+			min-height: 170px;
+			max-height: 170px;
+			padding: 14px;
+			overflow: hidden;
+			border: 1px solid rgba(255,255,255,.09);
+			background: rgba(0,0,0,.34);
+			font-family: Consolas, Monaco, monospace;
+			font-size: 12px;
+			line-height: 1.45;
+			color: #cfd7e3;
+		}
+
+		.console-line {
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+
+		.console-line:before {
+			content: "> ";
+			color: #f06a2a;
+			font-weight: 900;
+		}
+
+		.warning {
+			margin-top: 16px;
+			padding: 12px 14px;
+			border-left: 4px solid #f06a2a;
+			background: rgba(240,106,42,.1);
+			color: #ffe0d6;
+			font-size: 13px;
+			font-weight: 800;
+		}
+
+		.mini-game {
+			position: relative;
+			min-height: 170px;
+			padding: 14px;
+			border: 1px solid rgba(255,255,255,.09);
+			background:
+				radial-gradient(circle at 60% 40%, rgba(217,37,37,.16), transparent 34%),
+				rgba(255,255,255,.04);
+			overflow: hidden;
+		}
+
+		.game-title {
+			margin: 0 0 6px;
+			color: #fff;
+			font-size: 13px;
+			font-weight: 900;
+			text-transform: uppercase;
+		}
+
+		.game-help {
+			margin: 0;
+			color: #aeb8c5;
+			font-size: 12px;
+		}
+
+		.score {
+			position: absolute;
+			left: 14px;
+			bottom: 12px;
+			color: #ffb4a8;
+			font-size: 12px;
+			font-weight: 900;
+		}
+
+		.target {
+			position: absolute;
+			left: 62%;
+			top: 52%;
+			width: 34px;
+			height: 34px;
+			border: 0;
+			border-radius: 50%;
+			background: radial-gradient(circle, #fff 0 14%, #f06a2a 16% 38%, #d92525 40% 70%, rgba(217,37,37,.3) 72%);
+			box-shadow: 0 0 18px rgba(217,37,37,.6);
+			cursor: pointer;
+		}
+
 		.content {
 			display: grid;
-			grid-template-columns: 1.08fr .92fr .9fr;
+			grid-template-columns: 1fr 1fr;
 			gap: 48px;
 			align-items: start;
-			margin-top: 58px;
+			margin-top: 44px;
 		}
 
 		.section-title {
@@ -96,8 +257,7 @@
 			text-transform: uppercase;
 		}
 
-		.team-list,
-		.staff-list {
+		.team-list {
 			display: grid;
 			gap: 18px;
 		}
@@ -117,16 +277,14 @@
 		.red { background: #dc3232; }
 		.blue { background: #4691dc; }
 
-		.team b,
-		.staff b {
+		.team b {
 			display: block;
 			margin-bottom: 4px;
 			color: #fff;
 			font-size: 15px;
 		}
 
-		.team span,
-		.staff span {
+		.team span {
 			color: #aeb8c5;
 			font-size: 14px;
 		}
@@ -155,96 +313,9 @@
 			font-weight: 900;
 		}
 
-		.staff {
-			display: grid;
-			grid-template-columns: 40px 1fr;
-			align-items: center;
-			gap: 12px;
-		}
-
-		.avatar {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			width: 40px;
-			height: 40px;
-			border-radius: 50%;
-			background:
-				radial-gradient(circle at 30% 30%, rgba(255,255,255,.18), transparent 42%),
-				linear-gradient(135deg, rgba(217,37,37,.7), rgba(20,95,170,.62));
-			color: #fff;
-			font-weight: 900;
-		}
-
-		.loading {
-			margin-top: auto;
-			padding-top: 40px;
-		}
-
-		.loading-head {
-			display: flex;
-			justify-content: space-between;
-			gap: 18px;
-			align-items: baseline;
-		}
-
-		#status {
-			color: #fff;
-			font-size: 19px;
-			font-weight: 900;
-		}
-
-		#detail {
-			color: #aeb8c5;
-			font-size: 14px;
-			text-align: right;
-		}
-
-		.track {
-			position: relative;
-			height: 3px;
-			margin-top: 15px;
-			background: rgba(255,255,255,.12);
-		}
-
-		.fill {
-			position: relative;
-			width: 0%;
-			height: 100%;
-			background: linear-gradient(90deg, #d92525, #f06a2a);
-			box-shadow: 0 0 18px rgba(217,37,37,.45);
-			transition: width .45s ease;
-		}
-
-		.fill:after {
-			content: "";
-			position: absolute;
-			right: -18px;
-			top: -1px;
-			width: 18px;
-			height: 5px;
-			background: rgba(240,106,42,.45);
-			filter: blur(5px);
-		}
-
-		.phases {
-			display: flex;
-			gap: 24px;
-			margin-top: 14px;
-			color: #6f7885;
-			font-size: 12px;
-			font-weight: 900;
-			letter-spacing: 1px;
-			text-transform: uppercase;
-		}
-
-		.phases span.active {
-			color: #ffb4a8;
-		}
-
 		@media (max-width: 980px) {
 			.page { padding: 28px; }
-			.content { grid-template-columns: 1fr; gap: 30px; margin-top: 36px; }
+			.content, .loading-grid { grid-template-columns: 1fr; gap: 22px; }
 			h1 { font-size: 48px; }
 			.loading-head { display: block; }
 			#detail { margin-top: 6px; text-align: left; }
@@ -258,6 +329,34 @@
 				<div class="kicker">RED STREETS BRIEFING</div>
 				<h1>RED STREETS</h1>
 				<p class="subtitle">Gang Wars в Garry's Mod. Три стороны, городские карты и одна простая задача: удержать улицы за своей командой.</p>
+			</section>
+
+			<section class="loading">
+				<div class="loading-head">
+					<div id="status">Подключение к серверу...</div>
+					<div id="detail">Подготавливаем загрузку.</div>
+				</div>
+				<div class="track"><div class="fill" id="fill"></div></div>
+				<div class="phases">
+					<span id="phase-files" class="active">Файлы</span>
+					<span id="phase-lua">Lua</span>
+					<span id="phase-world">Мир</span>
+					<span id="phase-ready">Вход</span>
+				</div>
+
+				<div class="loading-grid">
+					<div>
+						<div class="console" id="consoleLog" aria-label="Список загрузки"></div>
+						<div class="warning">Если появилась ошибка <b>map is missing</b>, перезапустите игру и попробуйте снова зайти на сервер.</div>
+					</div>
+
+					<div class="mini-game" id="miniGame">
+						<p class="game-title">Мини-игра: поймай метку</p>
+						<p class="game-help">Кликай по красной метке или нажимай Space / Enter, пока сервер загружается.</p>
+						<button class="target" id="target" type="button" aria-label="Поймать метку"></button>
+						<div class="score">Очки: <span id="score">0</span></div>
+					</div>
+				</div>
 			</section>
 
 			<section class="content">
@@ -289,30 +388,6 @@
 						<li>Жалобы отправляй через <b>@</b> в чат админам.</li>
 					</ol>
 				</div>
-
-				<div>
-					<h2 class="section-title">Команда проекта</h2>
-					<div class="staff-list">
-						<div class="staff"><div class="avatar">D</div><div><b>dezzzy1337</b><span>Создатель</span></div></div>
-						<div class="staff"><div class="avatar">Р</div><div><b>Работорговец</b><span>Создатель</span></div></div>
-						<div class="staff"><div class="avatar">E</div><div><b>Elki Palki</b><span>Тестер / помощник</span></div></div>
-						<div class="staff"><div class="avatar">K</div><div><b>Ki$$marik</b><span>Тестер / помощник</span></div></div>
-					</div>
-				</div>
-			</section>
-
-			<section class="loading">
-				<div class="loading-head">
-					<div id="status">Подключение к серверу...</div>
-					<div id="detail">Подготавливаем загрузку.</div>
-				</div>
-				<div class="track"><div class="fill" id="fill"></div></div>
-				<div class="phases">
-					<span id="phase-files" class="active">Файлы</span>
-					<span id="phase-lua">Lua</span>
-					<span id="phase-world">Мир</span>
-					<span id="phase-ready">Вход</span>
-				</div>
 			</section>
 		</div>
 	</div>
@@ -321,10 +396,14 @@
 		var fill = document.getElementById("fill");
 		var status = document.getElementById("status");
 		var detail = document.getElementById("detail");
+		var consoleLog = document.getElementById("consoleLog");
+		var target = document.getElementById("target");
+		var scoreView = document.getElementById("score");
 		var totalFiles = 0;
 		var filesNeeded = 0;
 		var currentProgress = 3;
 		var targetProgress = 3;
+		var score = 0;
 
 		function setPhase(name) {
 			["files", "lua", "world", "ready"].forEach(function (phase) {
@@ -336,16 +415,58 @@
 			targetProgress = Math.max(targetProgress, value);
 		}
 
+		function addLog(text) {
+			if (!text) return;
+			var line = document.createElement("div");
+			line.className = "console-line";
+			line.textContent = text;
+			consoleLog.appendChild(line);
+			while (consoleLog.children.length > 9) {
+				consoleLog.removeChild(consoleLog.firstChild);
+			}
+			consoleLog.scrollTop = consoleLog.scrollHeight;
+		}
+
+		function moveTarget() {
+			var box = document.getElementById("miniGame");
+			var maxX = Math.max(40, box.clientWidth - 54);
+			var maxY = Math.max(70, box.clientHeight - 54);
+			target.style.left = Math.floor(28 + Math.random() * (maxX - 28)) + "px";
+			target.style.top = Math.floor(62 + Math.random() * (maxY - 62)) + "px";
+		}
+
+		function hitTarget() {
+			score += 1;
+			scoreView.textContent = score;
+			moveTarget();
+		}
+
+		target.addEventListener("click", hitTarget);
+		document.addEventListener("keydown", function (event) {
+			if (event.code === "Space" || event.code === "Enter") {
+				event.preventDefault();
+				hitTarget();
+			}
+		});
+
 		function tick() {
 			currentProgress += (targetProgress - currentProgress) * 0.08;
 			fill.style.width = currentProgress + "%";
 			requestAnimationFrame(tick);
 		}
 		tick();
+		moveTarget();
+		addLog("Ожидание ответа сервера...");
+		addLog("Подготовка загрузочного экрана.");
 
 		function GameDetails(servername, serverurl, mapname, maxplayers, steamid, gamemode) {
-			status.textContent = "Подключение к " + (servername || "Red Streets");
-			detail.textContent = "Карта: " + (mapname || "загрузка");
+			var server = servername || "Red Streets";
+			var map = mapname || "загрузка";
+			status.textContent = "Подключение к " + server;
+			detail.textContent = "Карта: " + map;
+			addLog("Сервер: " + server);
+			addLog("Карта: " + map);
+			if (gamemode) addLog("Режим: " + gamemode);
 		}
 
 		function SetFilesTotal(total) {
@@ -353,6 +474,7 @@
 			filesNeeded = totalFiles;
 			setPhase("files");
 			pushProgress(8);
+			addLog("Найдено файлов для загрузки: " + totalFiles);
 		}
 
 		function SetFilesNeeded(needed) {
@@ -361,16 +483,19 @@
 				pushProgress(8 + ((totalFiles - filesNeeded) / totalFiles) * 58);
 			}
 			detail.textContent = filesNeeded > 0 ? "Осталось файлов: " + filesNeeded : "Файлы загружены";
+			addLog(filesNeeded > 0 ? "Осталось файлов: " + filesNeeded : "Все файлы загружены.");
 		}
 
 		function DownloadingFile(fileName) {
 			setPhase("files");
 			detail.textContent = "Загрузка: " + fileName;
+			addLog("Загружается: " + fileName);
 		}
 
 		function SetStatusChanged(message) {
 			message = message || "Загрузка...";
 			status.textContent = message;
+			addLog(message);
 
 			var m = message.toLowerCase();
 			if (m.indexOf("lua") !== -1) {
